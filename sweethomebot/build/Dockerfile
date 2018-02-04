@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install --no-install-recommends --no-install-sugge
 		cron \
 		apache2 \
 		ca-certificates \
-		php php-sqlite3 php-mcrypt php-mbstring \
+		php php-sqlite3 php-mcrypt php-mbstring php-zip \
 		sqlite3 \
 		python3 python3-pip python3-setuptools python3-dev python3-psycopg2 \
 		build-essential \
@@ -52,7 +52,7 @@ RUN a2dissite 000-default \
 # chmod 600 == chmod u=rw
 	&& a2enmod ssl \
 # Enable PHP modules
-	&& phpenmod mcrypt mbstring \
+	&& phpenmod mcrypt mbstring zip \
 # Fixing user permissions
 	&& echo "www-data ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
