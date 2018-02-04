@@ -10,6 +10,8 @@ Tiny Tiny RSS docker image for all platforms supported by Debian using PHP7 and 
 
 Tiny Tiny RSS version : rolling release model based on git master branch
 
+Preinstalled Tiny Tiny RSS theme: feedly theme by [levito](https://github.com/levito/tt-rss-feedly-theme)
+
 Official Homepage: https://tt-rss.org/
 
 Official Git: https://git.tt-rss.org/git/tt-rss
