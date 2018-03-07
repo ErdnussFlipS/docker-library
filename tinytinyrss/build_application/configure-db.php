@@ -13,6 +13,12 @@ if (env_defined('_SKIP_SELF_URL_PATH_CHECKS')) {
     $config_add['_SKIP_SELF_URL_PATH_CHECKS'] = true;
 }
 
+// cookie lifetime
+if (env_defined('SESSION_COOKIE_LIFETIME')) {
+    $config_replace['SESSION_COOKIE_LIFETIME'] = getenv('SESSION_COOKIE_LIFETIME');
+}
+
+// database configuration
 if (getenv('DB_TYPE') !== false) {
     $config_replace['DB_TYPE'] = getenv('DB_TYPE');
 } elseif (getenv('DB_PORT_5432_TCP_ADDR') !== false) {
