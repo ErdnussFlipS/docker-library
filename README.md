@@ -3,5 +3,5 @@
 
 ## List of images
 
-- [Tiny Tiny RSS](tinytinyrss/README.md)
-- [SweetHomeBot](sweethomebot/README.md)
+- [Tiny Tiny RSS](tinytinyrss)
+- [SweetHomeBot](sweethomebot)
