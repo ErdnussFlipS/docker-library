@@ -29,7 +29,7 @@ RUN apt-get update \
 RUN phpenmod mcrypt
 
 # add ttrss as the only nginx site
-ADD ttrss.nginx.conf /etc/nginx/sites-available/ttrss
+COPY files/ttrss.nginx.conf /etc/nginx/sites-available/ttrss
 RUN ln -s /etc/nginx/sites-available/ttrss /etc/nginx/sites-enabled/ttrss \
 	&& rm /etc/nginx/sites-enabled/default
 
@@ -49,8 +49,8 @@ RUN git clone --progress --verbose https://github.com/levito/tt-rss-feedly-theme
 
 RUN mkdir /run/php && touch /run/php/php7.0-fpm.sock
 
-ADD configure-db.php /configure-db.php
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY app /app
+COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # expose only nginx HTTP port
 EXPOSE 80
@@ -64,4 +64,4 @@ ENV DB_USER ttrss
 ENV DB_PASS ttrss
 
 # always re-configure database with current ENV when Running container, then monitor all services
-CMD php /configure-db.php && supervisord -c /etc/supervisor/conf.d/supervisord.conf
+CMD php /app/configure-db.php && supervisord -c /etc/supervisor/conf.d/supervisord.conf
