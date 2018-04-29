@@ -30,7 +30,7 @@ else
 	USER=root
 fi
 
-useradd -G $GID $UID
+useradd -G $GROUP $USER
 chown -R $UID:$GID /opt/JDownloader
 
 trap stopJD2 EXIT
