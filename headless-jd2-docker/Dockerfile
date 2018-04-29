@@ -5,7 +5,7 @@ MAINTAINER PlusMinus <piddlpiddl@gmail.com>
 # Install some deps
 RUN \
 	apt-get update \
-	&& apt-get install \
+	&& apt-get install --no-install-recommends --no-install-suggests -y \
 		ffmpeg \
 		phantomjs \
 	&& apt-get clean \
