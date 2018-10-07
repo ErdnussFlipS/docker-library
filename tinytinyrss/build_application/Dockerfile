@@ -41,10 +41,18 @@ RUN rm -rf ./* \
 	&& git clone --progress --verbose https://git.tt-rss.org/fox/tt-rss.git . && git checkout $TTRSS_VERSION \
 	&& chown www-data:www-data -R /var/www \
 	&& cp config.php-dist config.php
-	
+
+# Install plugins
+RUN cd ./plugins.local \
+	&& git clone --progress --verbose https://github.com/DigitalDJ/tinytinyrss-fever-plugin ./fever \
+	&& git clone --progress --verbose https://github.com/hrk/tt-rss-newsplus-plugin.git ./api_newsplus \
+		&& mv -f ./api_newsplus/api_newsplus/* ./api_newsplus/
+
+ARG TTRSS_FEEDLY_THEME_VERSION=master
+
 # Install feedly theme: https://github.com/levito/tt-rss-feedly-theme
-RUN git clone --progress --verbose https://github.com/levito/tt-rss-feedly-theme.git ./feedly_theme_download \
-	&& mv -f ./feedly_theme_download/* ./themes/ \
+RUN git clone --progress --verbose --branch ${TTRSS_FEEDLY_THEME_VERSION} --depth 1 https://github.com/levito/tt-rss-feedly-theme.git ./feedly_theme_download \
+	&& mv -f ./feedly_theme_download/* ./themes.local/ \
 	&& rm -rf ./feedly_theme_download
 
 RUN mkdir /run/php && touch /run/php/php7.0-fpm.sock

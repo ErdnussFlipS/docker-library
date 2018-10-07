@@ -18,6 +18,10 @@ if (env_defined('SESSION_COOKIE_LIFETIME')) {
     $config_replace['SESSION_COOKIE_LIFETIME'] = getenv('SESSION_COOKIE_LIFETIME');
 }
 
+if (env_defined('PLUGINS')) {
+    $config_replace['PLUGINS'] = getenv('PLUGINS');
+}
+
 // database configuration
 if (getenv('DB_TYPE') !== false) {
     $config_replace['DB_TYPE'] = getenv('DB_TYPE');
